@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({limit : "30mb", extended : true}));
 
 app.use('/user',userRoutes);
 
-const PORT=5000;
-mongoose.connect("mongodb://localhost:27017/myapp",{useNewUrlParser:true,useUnifiedTopology:true})
+const PORT=process.env.PORT || 5000;
+mongoose.connect(process.env.CONNECTION_URL,{useNewUrlParser:true,useUnifiedTopology:true})
     .then(()=>{
         app.listen(PORT,()=> console.log(`Server running on port: ${PORT}`));
     })
